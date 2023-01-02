@@ -50,7 +50,7 @@ export const Movies = () => {
   };
 
   return (
-    <Box as="main" p={5}>
+    <Box as="main" px={5}>
       <SearchForm onSubmit={onSubmit}>
         <label>
           <Input
@@ -73,6 +73,7 @@ export const Movies = () => {
 const SearchForm = styled.form`
   display: flex;
   align-items: center;
+  margin-bottom: ${p => p.theme.space[5]};
 `;
 
 const Input = styled.input`

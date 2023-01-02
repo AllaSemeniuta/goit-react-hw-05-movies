@@ -25,7 +25,7 @@ export const Reviews = () => {
     return <div>We don`t have any reviews for this movie.</div>;
 
   return (
-    <Box as="section" p={5}>
+    <Box as="section" px={5}>
       <ul>
         {reviews.results.map(({ id, author, content }) => (
           <Item key={id}>

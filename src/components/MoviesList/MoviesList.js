@@ -14,7 +14,7 @@ const posterPath = 'https://image.tmdb.org/t/p/w500';
 export const MoviesList = ({ data, title }) => {
   const location = useLocation();
   return (
-    <Box as="main" p={5}>
+    <Box as="main" px={5}>
       {title && <Title>{title}</Title>}
       <GalleryList>
         {data.map(({ title, id, poster_path }) => {

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 import * as API from '../services/moviesApi';
 import defaultPoster from '../images/defaultPoster.png';
 import { Box } from 'components/Box/Box';
 import styled from 'styled-components';
 import Title from 'components/Title/Title';
-
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
@@ -37,35 +37,50 @@ export const MovieDetails = () => {
   const image = poster_path ? `${posterPath}${poster_path}` : defaultPoster;
 
   return (
-    <main>
-      <Link to={location.state?.from ?? '/'}>Go Back</Link>
-      <Box as="section" display="flex" flexWrap="wrap" gridGap={6}>
+    <Box as="main" px={5} pb={5}>
+      <BackLink to={location.state?.from ?? '/'}>
+        <AiOutlineArrowLeft />
+        <BackLinkText> Go Back</BackLinkText>
+      </BackLink>
+      <Box as="section" display="flex" flexWrap="wrap" gridGap={6} mb={5}>
         <Image src={image} alt={title} />
         <Box flexGrow="2" maxWidth="600px">
           <Title as="h1">
-            {title} {''}({year})
+            {title} {''}({year}){' '}
           </Title>
-          <p>User Score: {score}%</p>
-          <h2>Overview</h2>
-          <p>{overview}</p>
-          <h3>Genres</h3>
-          <p>
+          <Text>User Score: {score}%</Text>
+          <Title as="h2">Overview</Title>
+          <Text>{overview}</Text>
+          <Title as="h2">Genres</Title>
+          <Text>
             {' '}
             {genres.map(({ name }) => (
               <span key={name}>{name}</span>
             ))}
-          </p>{' '}
+          </Text>{' '}
         </Box>
       </Box>
-      <p>Additional information</p>
-      <Link to="cast" state={{ from: location.state?.from ?? '/' }}>
-        Cast
-      </Link>
-      <Link to="reviews" state={{ from: location.state?.from ?? '/' }}>
-        Reviews{' '}
-      </Link>
+      <Box as="section">
+        <Title as="h3" mb="20px">
+          Additional information
+        </Title>
+        <Box mb={5} mt={3} p={3}>
+          <AdditionalInfoLink
+            to="cast"
+            state={{ from: location.state?.from ?? '/' }}
+          >
+            Cast
+          </AdditionalInfoLink>
+          <AdditionalInfoLink
+            to="reviews"
+            state={{ from: location.state?.from ?? '/' }}
+          >
+            Reviews{' '}
+          </AdditionalInfoLink>
+        </Box>
+      </Box>
       <Outlet />
-    </main>
+    </Box>
   );
 };
 
@@ -75,4 +90,36 @@ const Image = styled.img`
   height: 400px;
   object-fit: cover;
   /* margin-bottom: ${p => p.theme.space[2]}; */
+`;
+
+const BackLinkText = styled.span`
+  margin-left: ${p => p.theme.space[3]};
+`;
+
+const BackLink = styled(NavLink)`
+  margin-bottom: ${p => p.theme.space[3]};
+  display: flex;
+  text-decoration: none;
+  cursor: pointer;
+  /* justify-content: center; */
+  align-items: center;
+`;
+
+const Text = styled.p`
+  font-size: ${p => p.theme.fontSizes.s};
+  margin-bottom: ${p => p.theme.space[3]};
+`;
+
+const AdditionalInfoLink = styled(NavLink)`
+  /* margin-top: ${p => p.theme.space[3]}; */
+  text-decoration: none;
+  border: ${p => p.theme.borders.normal};
+  padding: ${p => p.theme.space[2]};
+  border-radius: ${p => p.theme.radii.normal};
+
+  :not(:last-child) {
+    margin-right: ${p => p.theme.space[3]};
+  }
+
+  /* cursor: pointer; */
 `;

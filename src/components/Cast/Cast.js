@@ -38,7 +38,7 @@ export const Cast = () => {
 
   return (
     // {/* {isLoading && <BeatLoader color="#36d7b7" />} */}
-    <Box as="section" p={5}>
+    <Box as="section" px={5}>
       <ul>
         {casts.map(({ profile_path, name, character }) => {
           const image = profile_path

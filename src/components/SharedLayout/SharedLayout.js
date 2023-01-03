@@ -1,6 +1,6 @@
-import { Box } from 'components/Box/Box';
 import { Outlet } from 'react-router-dom';
 import { NavItem } from './SharedLayout.styled';
+import { Box } from 'components/Box/Box';
 
 const navItems = [
   { href: '/', text: 'Home' },

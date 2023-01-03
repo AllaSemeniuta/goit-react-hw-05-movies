@@ -1,9 +1,10 @@
-import { Box } from 'components/Box/Box';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as API from '../../services/moviesApi';
 import defaultCastAvatar from '../../images/defaultCastAvatar.png';
+import { Box } from 'components/Box/Box';
 import { Image, Text } from './Cast.styled';
+
 // import BeatLoader from 'react-spinners/BeatLoader';
 
 export const Cast = () => {

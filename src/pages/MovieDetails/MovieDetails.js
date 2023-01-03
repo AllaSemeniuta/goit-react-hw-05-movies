@@ -1,11 +1,18 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
-import * as API from '../services/moviesApi';
-import defaultPoster from '../images/defaultPoster.png';
-import { Box } from 'components/Box/Box';
-import styled from 'styled-components';
-import Title from 'components/Title/Title';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+import * as API from '../../services/moviesApi';
+import defaultPoster from '../../images/defaultPoster.png';
+import { Box } from 'components/Box/Box';
+import Title from 'components/Title/Title';
+import {
+  Image,
+  BackLinkText,
+  BackLink,
+  Text,
+  AdditionalInfoLink,
+} from './MovieDetails.styled';
+
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
@@ -55,7 +62,7 @@ export const MovieDetails = () => {
           <Text>
             {' '}
             {genres.map(({ name }) => (
-              <span key={name}>{name}</span>
+              <span key={name}> {name} </span>
             ))}
           </Text>{' '}
         </Box>
@@ -83,43 +90,3 @@ export const MovieDetails = () => {
     </Box>
   );
 };
-
-const Image = styled.img`
-  width: 280px;
-  border-radius: ${p => p.theme.radii.normal};
-  height: 400px;
-  object-fit: cover;
-  /* margin-bottom: ${p => p.theme.space[2]}; */
-`;
-
-const BackLinkText = styled.span`
-  margin-left: ${p => p.theme.space[3]};
-`;
-
-const BackLink = styled(NavLink)`
-  margin-bottom: ${p => p.theme.space[3]};
-  display: flex;
-  text-decoration: none;
-  cursor: pointer;
-  /* justify-content: center; */
-  align-items: center;
-`;
-
-const Text = styled.p`
-  font-size: ${p => p.theme.fontSizes.s};
-  margin-bottom: ${p => p.theme.space[3]};
-`;
-
-const AdditionalInfoLink = styled(NavLink)`
-  /* margin-top: ${p => p.theme.space[3]}; */
-  text-decoration: none;
-  border: ${p => p.theme.borders.normal};
-  padding: ${p => p.theme.space[2]};
-  border-radius: ${p => p.theme.radii.normal};
-
-  :not(:last-child) {
-    margin-right: ${p => p.theme.space[3]};
-  }
-
-  /* cursor: pointer; */
-`;

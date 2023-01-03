@@ -1,8 +1,8 @@
-import { Box } from 'components/Box/Box';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as API from '../../services/moviesApi';
 import { AuthorInfo, Item } from './Reviews.styled';
+import { Box } from 'components/Box/Box';
 
 export const Reviews = () => {
   const { movieId } = useParams();
@@ -21,8 +21,7 @@ export const Reviews = () => {
     getReviews(movieId);
   }, [movieId]);
 
-  if (reviews === '')
-    return <div>We don`t have any reviews for this movie.</div>;
+  if (!reviews) return <div>We don`t have any reviews for this movie.</div>;
 
   return (
     <Box as="section" px={5}>

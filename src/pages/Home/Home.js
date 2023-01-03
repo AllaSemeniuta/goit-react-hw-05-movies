@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import * as API from '../services/moviesApi';
+import * as API from '../../services/moviesApi';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 
 export const Home = () => {
@@ -12,8 +12,9 @@ export const Home = () => {
     }
     getTrendMovies();
   }, []);
+  console.log('trendMovies', trendMovies);
 
   if (!trendMovies) return;
 
-  return <MoviesList data={trendMovies} title="Trending today" />;
+  return <MoviesList data={trendMovies} titleOfSection="Trending today" />;
 };

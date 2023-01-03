@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Box } from 'components/Box/Box';
 import {
   Title,
@@ -11,11 +12,11 @@ import defaultPoster from '../../images/defaultPoster.png';
 
 const posterPath = 'https://image.tmdb.org/t/p/w500';
 
-export const MoviesList = ({ data, title }) => {
+export const MoviesList = ({ data, titleOfSection }) => {
   const location = useLocation();
   return (
     <Box as="main" px={5}>
-      {title && <Title>{title}</Title>}
+      {titleOfSection && <Title>{titleOfSection}</Title>}
       <GalleryList>
         {data.map(({ title, id, poster_path }) => {
           const image = poster_path
@@ -34,4 +35,9 @@ export const MoviesList = ({ data, title }) => {
       </GalleryList>
     </Box>
   );
+};
+
+MovieTitle.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape),
+  titleOfSection: PropTypes.string,
 };

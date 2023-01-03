@@ -1,4 +1,6 @@
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+
 import { NavItem } from './SharedLayout.styled';
 import { Box } from 'components/Box/Box';
 
@@ -25,7 +27,9 @@ export default function SharedLayout() {
           </NavItem>
         ))}
       </Box>
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

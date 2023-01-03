@@ -12,13 +12,13 @@ const obj = {
 
 export const trendMoviesFetch = async () => {
   const response = await axios.get('/trending/movie/week', obj);
-  console.log(response.data);
+  // console.log(response.data);
   return response.data;
 };
 
 export const getMovieDetails = async movie_id => {
   const response = await axios.get(`/movie/${movie_id}`, obj);
-  console.log(response);
+  // console.log(response);
   return response;
 };
 

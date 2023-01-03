@@ -7,7 +7,7 @@ import { Image, Text } from './Cast.styled';
 
 // import BeatLoader from 'react-spinners/BeatLoader';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const [casts, setCast] = useState('');
   // const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,7 @@ export const Cast = () => {
 
       async function getCast(movieId) {
         const response = await API.getCastByID(movieId);
-        console.log('response.data.cast', response.data);
+        // console.log('response.data.cast', response.data);
         setCast(response.data.cast);
       }
       // console.log(isLoading);
@@ -60,3 +60,5 @@ export const Cast = () => {
     </Box>
   );
 };
+
+export default Cast;

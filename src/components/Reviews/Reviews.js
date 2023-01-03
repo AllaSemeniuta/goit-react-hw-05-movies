@@ -4,7 +4,7 @@ import * as API from '../../services/moviesApi';
 import { AuthorInfo, Item } from './Reviews.styled';
 import { Box } from 'components/Box/Box';
 
-export const Reviews = () => {
+const Reviews = () => {
   const { movieId } = useParams();
 
   const [reviews, setReviews] = useState('');
@@ -14,7 +14,7 @@ export const Reviews = () => {
 
     async function getReviews(movieId) {
       const response = await API.getReviewsByID(movieId);
-      console.log('reviews', response);
+      // console.log('reviews', response);
       setReviews(response.data);
     }
 
@@ -37,3 +37,5 @@ export const Reviews = () => {
     </Box>
   );
 };
+
+export default Reviews;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import * as API from '../../services/moviesApi';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 
-export const Home = () => {
+const Home = () => {
   const [trendMovies, setTrendMovies] = useState([]);
 
   useEffect(() => {
@@ -12,9 +12,11 @@ export const Home = () => {
     }
     getTrendMovies();
   }, []);
-  console.log('trendMovies', trendMovies);
+  // console.log('trendMovies', trendMovies);
 
   if (!trendMovies) return;
 
   return <MoviesList data={trendMovies} titleOfSection="Trending today" />;
 };
+
+export default Home;

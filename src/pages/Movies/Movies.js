@@ -8,7 +8,7 @@ import { BsSearch } from 'react-icons/bs';
 import toast from 'react-hot-toast';
 import { SearchForm, Input, Button } from './Movies.styled';
 
-export const Movies = () => {
+const Movies = () => {
   const [query, setQuery] = useState('');
   const [serchMovies, setSearchMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -69,3 +69,5 @@ export const Movies = () => {
     </Box>
   );
 };
+
+export default Movies;

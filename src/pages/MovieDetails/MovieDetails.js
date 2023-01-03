@@ -13,13 +13,13 @@ import {
   AdditionalInfoLink,
 } from './MovieDetails.styled';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const [movieDetails, setMovieDetails] = useState('');
 
-  console.log('location', location);
-  console.log(movieId);
+  // console.log('location', location);
+  // console.log(movieId);
   const posterPath = 'https://image.tmdb.org/t/p/w500';
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const MovieDetails = () => {
 
     async function getMovieDetails(movieId) {
       const response = await API.getMovieDetails(movieId);
-      console.log(response);
+      // console.log(response);
       setMovieDetails(response.data);
     }
 
@@ -40,7 +40,7 @@ export const MovieDetails = () => {
     movieDetails;
   const score = ((vote_average * 100) / 10).toFixed();
   const year = release_date.slice(0, 4);
-  console.log(genres);
+  // console.log(genres);
   const image = poster_path ? `${posterPath}${poster_path}` : defaultPoster;
 
   return (
@@ -90,3 +90,5 @@ export const MovieDetails = () => {
     </Box>
   );
 };
+
+export default MovieDetails;

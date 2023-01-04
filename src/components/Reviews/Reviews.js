@@ -9,7 +9,7 @@ import BeatLoader from 'react-spinners/BeatLoader';
 const Reviews = () => {
   const { movieId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [reviews, setReviews] = useState('');
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     if (movieId === null) return;
@@ -18,7 +18,9 @@ const Reviews = () => {
       try {
         setIsLoading(true);
         const response = await API.getReviewsByID(movieId);
-        setReviews(response.data);
+        setReviews(response.data.results);
+        // console.log('response.data.results', response.data.results);
+        // console.log('reviews', reviews);
       } catch (error) {
         console.log(error);
       } finally {
@@ -35,9 +37,9 @@ const Reviews = () => {
         <BeatLoader color="#36d7b7" />
       ) : (
         <Box as="section" px={5}>
-          {reviews.results ? (
+          {reviews.length > 0 ? (
             <ul>
-              {reviews.results.map(({ id, author, content }) => (
+              {reviews.map(({ id, author, content }) => (
                 <Item key={id}>
                   <AuthorInfo>Author: {author}</AuthorInfo>
                   <p>{content}</p>

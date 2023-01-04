@@ -89,7 +89,7 @@ import BeatLoader from 'react-spinners/BeatLoader';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [casts, setCast] = useState('');
+  const [casts, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const posterPath = 'https://image.tmdb.org/t/p/w500';
 
@@ -119,7 +119,7 @@ const Cast = () => {
         <BeatLoader color="#36d7b7" />
       ) : (
         <Box as="section" px={5}>
-          {casts ? (
+          {casts.length > 0 ? (
             <ul>
               {casts.map(({ profile_path, name, character }) => {
                 const image = profile_path

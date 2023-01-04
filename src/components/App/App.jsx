@@ -4,16 +4,16 @@ import { Routes, Route } from 'react-router-dom';
 // import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
 // import { Movies } from 'pages/Movies/Movies';
 // import { GlobalStyle } from '../GlobalStyle';
-// import { Cast } from '../Cast/Cast';
-// import { Reviews } from '../Reviews/Reviews';
+import Cast from '../Cast/Cast';
+import Reviews from '../Reviews/Reviews';
 // import SharedLayout from 'components/SharedLayout/SharedLayout';
 // import { Home } from 'pages/Home/Home';
 
 const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
 const Movies = lazy(() => import('pages/Movies/Movies'));
 const GlobalStyle = lazy(() => import('../GlobalStyle'));
-const Cast = lazy(() => import('../Cast/Cast'));
-const Reviews = lazy(() => import('../Reviews/Reviews'));
+// const Cast = lazy(() => import('../Cast/Cast'));
+// const Reviews = lazy(() => import('../Reviews/Reviews'));
 const SharedLayout = lazy(() => import('components/SharedLayout/SharedLayout'));
 const Home = lazy(() => import('pages/Home/Home'));
 

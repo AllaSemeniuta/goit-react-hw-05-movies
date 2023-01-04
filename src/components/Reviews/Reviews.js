@@ -4,37 +4,53 @@ import * as API from '../../services/moviesApi';
 import { AuthorInfo, Item } from './Reviews.styled';
 import { Box } from 'components/Box/Box';
 
+import BeatLoader from 'react-spinners/BeatLoader';
+
 const Reviews = () => {
   const { movieId } = useParams();
-
+  const [isLoading, setIsLoading] = useState(false);
   const [reviews, setReviews] = useState('');
 
   useEffect(() => {
     if (movieId === null) return;
 
     async function getReviews(movieId) {
-      const response = await API.getReviewsByID(movieId);
-      // console.log('reviews', response);
-      setReviews(response.data);
+      try {
+        setIsLoading(true);
+        const response = await API.getReviewsByID(movieId);
+        setReviews(response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     getReviews(movieId);
   }, [movieId]);
 
-  if (!reviews) return <div>We don`t have any reviews for this movie.</div>;
-
   return (
-    <Box as="section" px={5}>
-      <ul>
-        {reviews.results.map(({ id, author, content }) => (
-          <Item key={id}>
-            <AuthorInfo>Author: {author}</AuthorInfo>
-            <p>{content}</p>
-            <br></br>
-          </Item>
-        ))}
-      </ul>
-    </Box>
+    <>
+      {isLoading ? (
+        <BeatLoader color="#36d7b7" />
+      ) : (
+        <Box as="section" px={5}>
+          {reviews.results ? (
+            <ul>
+              {reviews.results.map(({ id, author, content }) => (
+                <Item key={id}>
+                  <AuthorInfo>Author: {author}</AuthorInfo>
+                  <p>{content}</p>
+                  <br></br>
+                </Item>
+              ))}
+            </ul>
+          ) : (
+            <div>We don`t have any reviews for this movie.</div>
+          )}
+        </Box>
+      )}
+    </>
   );
 };
 
